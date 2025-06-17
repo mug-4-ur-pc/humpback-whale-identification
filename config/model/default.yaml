@@ -1,0 +1,13 @@
+model: resnet50
+pretrained: True
+image_size: 224
+embedding_size: 512
+head_dropout: 0.3
+num_classes: 5005
+num_predictions: 5
+
+arc_margin:
+  scale: 30.0
+  margin: 0.50
+  easy_margin: False
+  label_smoothing: 0.0

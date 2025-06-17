@@ -1,0 +1,7 @@
+defaults:
+  - data: default.yaml
+  - hardware: default.yaml
+  - log: default.yaml
+  - model: default.yaml
+  - train: default.yaml
+  - _self_

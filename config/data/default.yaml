@@ -1,0 +1,29 @@
+root: data
+
+unique_labels: data/labels.json
+unknown_label: new_whale
+
+train_img_path: data/train
+train_labels: data/train.csv
+
+test_img_path: data/test
+output_test_labels: data/test.csv
+
+train_val_split_ratio: 0.7
+split_seed: 42
+
+loader:
+  num_workers: 8
+  pin_memory: true
+  shuffle: true
+
+transforms:
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+  degrees: 15
+  scale: [0.85, 1.15]
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  horizontal_flip: True
+  vertical_flip: False

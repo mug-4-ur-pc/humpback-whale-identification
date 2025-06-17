@@ -1,0 +1,3 @@
+seed: 42
+devices: [0]
+matmul: medium
