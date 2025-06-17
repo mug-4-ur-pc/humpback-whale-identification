@@ -13,5 +13,5 @@ scheduler:
   patience: 3
   min_lr: 0.1
 
-batch_size: 512
+batch_size: 256
 num_epochs: 15

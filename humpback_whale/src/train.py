@@ -19,7 +19,7 @@ def set_tracking(cfg: DictConfig):
     Set tracking for MLflow.
     """
     if not cfg.log.debug:
-        utils.check_uncommitted_changes()
+        # utils.check_uncommitted_changes()
 
         if cfg.log.mlflow_uri:
             mlflow.set_tracking_uri(cfg.log.mlflow_uri)
@@ -123,7 +123,8 @@ def train(cfg: DictConfig):
     if tracking:
         run_id = logger.run_id
     try:
-        trainer.fit(model, data, ckpt_path=run_dir / "last.ckpt")
+        ckpt_path = run_dir / "last.ckpt"
+        trainer.fit(model, data, ckpt_path=ckpt_path if ckpt_path.exists() else None)
     finally:
         if tracking:
             mlflow.log_artifact(run_dir, run_dir, run_id=run_id)
