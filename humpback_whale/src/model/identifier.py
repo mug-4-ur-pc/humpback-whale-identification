@@ -79,7 +79,7 @@ class IdentificationModel(pl.LightningModule):
 
     def predict_step(self, batch, batch_idx):
         logits = self(batch, None)
-        output = torch.argsort(logits, dim=1)[: self.num_predictions]
+        output = torch.argsort(logits, dim=1)[..., -self.num_predictions :]
 
         return output
 

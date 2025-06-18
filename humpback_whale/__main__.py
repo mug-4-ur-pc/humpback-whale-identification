@@ -4,6 +4,7 @@ import fire
 import hydra
 
 from humpback_whale.src.export import ModelExporter
+from humpback_whale.src.infer import infer
 from humpback_whale.src.setup import setup
 from humpback_whale.src.train import train
 
@@ -76,6 +77,7 @@ def main():
         "setup": setup_wrapper,
         "train": train_wrapper,
         "export": export_wrapper,
+        "infer": infer,
     }
     try:
         fire.Fire(commands)
