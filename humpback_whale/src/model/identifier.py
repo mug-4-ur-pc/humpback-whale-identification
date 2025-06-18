@@ -14,7 +14,6 @@ class IdentificationModel(pl.LightningModule):
         super().__init__()
         self.save_hyperparameters()
 
-        self.num_classes = model_cfg.num_classes
         self.num_predictions = model_cfg.num_predictions
         self._init_model(model_cfg)
 
@@ -25,6 +24,8 @@ class IdentificationModel(pl.LightningModule):
         self.train_cfg = train_cfg
 
     def _init_model(self, cfg: DictConfig):
+        self.num_classes = cfg.num_classes
+
         self.backbone = timm.create_model(cfg.model, pretrained=cfg.pretrained)
         in_features = self.backbone.fc.out_features
         self.head = torch.nn.Sequential(

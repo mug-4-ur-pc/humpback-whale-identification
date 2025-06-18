@@ -1,8 +1,9 @@
 import sys
 
 import fire
-from hydra import compose, initialize
+import hydra
 
+from humpback_whale.src.export import ModelExporter
 from humpback_whale.src.setup import setup
 from humpback_whale.src.train import train
 
@@ -13,8 +14,8 @@ def load_hydra_config(config_dir: str):
     Args:
         config_dir (str): Path to the directory containing `main.yaml`.
     """
-    with initialize(version_base=None, config_path=config_dir):
-        return compose("main.yaml")
+    with hydra.initialize(version_base=None, config_path=config_dir):
+        return hydra.compose("main.yaml")
 
 
 def setup_wrapper(config_dir: str = "../config"):
@@ -38,6 +39,33 @@ def train_wrapper(config_dir: str = "../config"):
     train(cfg)
 
 
+def export_wrapper(
+    src: str,
+    dst: str = None,
+    format: str = "pt",
+    config_dir: str = "../config",
+    **kwargs,
+):
+    """Export trained model.
+
+    Args:
+        src: Model checkpoint.
+        dst: Output path (default: None).
+        format: Output format (pt, onnx, engine).
+        config_dir (str): Configuration directory path (default: '../conf').
+    """
+    cfg = load_hydra_config(config_dir)
+    exporter = ModelExporter(cfg)
+    if format == "pt":
+        exporter.to_pt(src, dst)
+    elif format == "onnx":
+        exporter.to_onnx(src, dst, **kwargs)
+    elif format == "engine":
+        exporter.to_engine(src, dst, **kwargs)
+    else:
+        raise ValueError(f"Unknown output format: {format}")
+
+
 def main():
     """Humpback Whale Data Manager CLI.
 
@@ -47,6 +75,7 @@ def main():
     commands = {
         "setup": setup_wrapper,
         "train": train_wrapper,
+        "export": export_wrapper,
     }
     try:
         fire.Fire(commands)
