@@ -1,13 +1,13 @@
 root: data
 
-unique_labels: data/labels.json
+unique_labels: dvc_store/data/labels.json
 unknown_label: new_whale
 
-train_img_path: data/train
-train_labels: data/train.csv
+train_img_path: dvc_store/data/train
+train_labels: dvc_store/data/train.csv
 
-test_img_path: data/test
-output_test_labels: data/test.csv
+test_img_path: dvc_store/data/test
+output_test_labels: dvc_store/data/test.csv
 
 train_val_split_ratio: 0.7
 split_seed: 42

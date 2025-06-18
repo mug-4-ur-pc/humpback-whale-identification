@@ -125,6 +125,7 @@ def train(cfg: DictConfig):
     try:
         ckpt_path = run_dir / "last.ckpt"
         trainer.fit(model, data, ckpt_path=ckpt_path if ckpt_path.exists() else None)
+        ckpt_path.unlink(missing_ok=True)
     finally:
         if tracking:
             mlflow.log_artifact(run_dir, run_dir, run_id=run_id)

@@ -1,6 +1,6 @@
 debug: false
 
-experiment_root_path: experiments/
+experiment_root_path: dvc_store/experiments/
 experiment: humpback_whole_resnet
 
 mlflow_uri: http://127.0.0.1:22432
