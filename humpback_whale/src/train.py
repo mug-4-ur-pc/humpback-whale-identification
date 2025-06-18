@@ -19,7 +19,7 @@ def set_tracking(cfg: DictConfig):
     Set tracking for MLflow.
     """
     if not cfg.log.debug:
-        # utils.check_uncommitted_changes()
+        utils.check_uncommitted_changes()
 
         if cfg.log.mlflow_uri:
             mlflow.set_tracking_uri(cfg.log.mlflow_uri)

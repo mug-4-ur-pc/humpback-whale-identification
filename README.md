@@ -160,4 +160,4 @@ in csv file creation. You can specify path of this file by using flag `-o` or `-
 To choose the model for inference edit model_path field in inference config.
 You can use your own config by using flag `-c`.
 
-You can look at output example [here](./examples/prediction.csv).
+You can look at output example [here](./examples/predictions.csv).
