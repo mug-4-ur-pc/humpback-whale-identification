@@ -99,7 +99,7 @@ class InferenceModel:
 
 
 def infer(
-    input_path: str = None,
+    input_path: str,
     output_path: str = "predictions.csv",
     config_path: Optional[str] = "config/infer.yaml",
 ):
